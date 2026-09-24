@@ -1,8 +1,67 @@
-# Game files
+# Nebula — Proxy & Games
 
-Bundles some HTML5 games, flash games through ruffle (swfs are [here](https://github.com/BinBashBanana/gstore)), and [webretro](https://github.com/BinBashBanana/webretro).
+A custom web proxy powered by [Ultraviolet](https://github.com/titaniumnetwork-dev/Ultraviolet)
+(the modern wisp / bare-mux / epoxy stack) bundled together with a large
+collection of HTML5, Flash (via [ruffle](https://ruffle.rs/)) and retro games
+(via [webretro](https://github.com/BinBashBanana/webretro)).
 
-Indexed using the python script included.
+The UI is a custom "Nebula" theme: an animated aurora background with a
+glassmorphic proxy home page, and a games library rendered as a card grid with
+real screenshot thumbnails for every HTML5 game.
+
+## Running
+
+Requires Node.js 20+.
+
+```sh
+npm install
+npm start
+```
+
+Then open <http://localhost:8080>:
+
+- `/` — the Ultraviolet web proxy.
+- `/games` — the bundled games list (served from `list.html`).
+
+Set the `PORT` environment variable to change the listen port (defaults to `8080`).
+
+## How it works
+
+`server.js` is an Express + wisp server that:
+
+- serves the proxy frontend from `public/`;
+- serves the Ultraviolet, epoxy-transport and bare-mux vendor scripts at
+  `/uv/`, `/epoxy/` and `/baremux/`;
+- terminates the wisp WebSocket used by the proxy transport at `/wisp/`;
+- serves the games from `gfiles/` (with `list.html` at `/games`).
+
+The proxy frontend and its vendor assets are served with cross-origin isolation
+headers (required by Ultraviolet's transport). The static games are served
+without those headers.
+
+## Games list
+
+The games list (`list.html`) is generated from the contents of `gfiles/` by the
+included Python script:
+
+```sh
+python3 compiler.py   # or: npm run compile
+```
+
+Each card uses a screenshot thumbnail (`gfiles/thumbnails/`) when one exists,
+and otherwise falls back to a colored gradient tile with the game's initial.
+
+### Thumbnails
+
+Thumbnails are committed to `gfiles/thumbnails/`. To (re)generate them, run the
+site and use the capture tool (uses `puppeteer-core` + a local Chrome):
+
+```sh
+npm start                 # in one terminal
+npm run thumbnails        # in another (add `-- 2048,chess --force` to target/refresh)
+```
+
+swfs are [here](https://github.com/BinBashBanana/gstore).
 
 ---
 

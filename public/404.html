@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Nebula &middot; Error</title>
+    <meta name="googlebot" content="noindex, nofollow, nosnippet" />
+    <base href="/" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="aurora" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+
+    <nav class="topnav">
+      <a class="brand" href="/">
+        <span class="brand-mark">✦</span>
+        <span class="brand-name">Nebula</span>
+      </a>
+      <div class="links">
+        <a href="/">Proxy</a>
+        <a href="/games">Games</a>
+      </div>
+    </nav>
+
+    <main class="hero">
+      <section class="glass">
+        <h1 class="title">Lost in space</h1>
+        <p class="subtitle">The server could not route your request.</p>
+        <div class="status">
+          <p id="uv-error"></p>
+          <code id="uv-error-code"></code>
+        </div>
+        <button id="uv-register-sw" value="Register service worker">
+          Register ServiceWorker
+        </button>
+        <div class="chips">
+          <a class="chip" href="/">Back to Proxy</a>
+          <a class="chip" href="/games">Games</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+    <script src="register-sw.js"></script>
+    <script src="error.js"></script>
+  </body>
+</html>
