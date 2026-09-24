@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>Error</title>
+    <title>Nebula &middot; Error</title>
     <meta name="googlebot" content="noindex, nofollow, nosnippet" />
     <base href="/" />
     <link rel="shortcut icon" href="favicon.ico" />
@@ -14,39 +14,41 @@
   </head>
 
   <body>
+    <div class="aurora" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+
     <nav class="topnav">
       <a class="brand" href="/">
-        <img src="uv.png" alt="logo" />
-        <span>Proxy&nbsp;&amp;&nbsp;Games</span>
+        <span class="brand-mark">✦</span>
+        <span class="brand-name">Nebula</span>
       </a>
       <div class="links">
         <a href="/">Proxy</a>
         <a href="/games">Games</a>
       </div>
     </nav>
+
     <main class="hero">
-      <div class="logo-wrapper left-margin header-center">
-        <h1>Something went wrong</h1>
-      </div>
-      <div class="desc left-margin">
-        <p>The server could not route your request.</p>
-        <p id="uv-error"></p>
-        <code id="uv-error-code"></code>
+      <section class="glass">
+        <h1 class="title">Lost in space</h1>
+        <p class="subtitle">The server could not route your request.</p>
+        <div class="status">
+          <p id="uv-error"></p>
+          <code id="uv-error-code"></code>
+        </div>
         <button id="uv-register-sw" value="Register service worker">
           Register ServiceWorker
         </button>
-      </div>
-      <div class="flex-center">
-        <a class="games-cta" href="/">Back to Proxy</a>
-      </div>
+        <div class="chips">
+          <a class="chip" href="/">Back to Proxy</a>
+          <a class="chip" href="/games">Games</a>
+        </div>
+      </section>
     </main>
-    <footer>
-      <div>
-        <a href="/">Proxy</a>
-        <a href="/games">Games</a>
-        <a href="credits.html">Credits</a>
-      </div>
-    </footer>
+
     <script src="uv/uv.bundle.js"></script>
     <script src="uv/uv.config.js"></script>
     <script src="register-sw.js"></script>

@@ -6,15 +6,15 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>Proxy &amp; Games</title>
+    <title>Nebula &middot; Proxy &amp; Games</title>
     <meta
       name="description"
-      content="A custom web proxy powered by Ultraviolet, bundled with a large collection of HTML5, Flash and retro games."
+      content="Nebula is a custom web proxy powered by Ultraviolet, bundled with a large collection of HTML5, Flash and retro games."
     />
     <meta
       name="theme-color"
       media="(prefers-color-scheme: dark)"
-      content="#434c5e"
+      content="#0b1020"
     />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="index.css" />
@@ -28,10 +28,16 @@
   </head>
 
   <body>
+    <div class="aurora" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+
     <nav class="topnav">
       <a class="brand" href="/">
-        <img src="uv.png" alt="logo" />
-        <span>Proxy&nbsp;&amp;&nbsp;Games</span>
+        <span class="brand-mark">✦</span>
+        <span class="brand-name">Nebula</span>
       </a>
       <div class="links">
         <a class="active" href="/">Proxy</a>
@@ -40,56 +46,93 @@
     </nav>
 
     <main class="hero">
-      <div
-        title="Ultraviolet Logo"
-        class="flex-center logo-wrapper header-center"
-      >
-        <img class="logo" src="uv.png" alt="Ultraviolet" />
-        <h1>Custom Web Proxy</h1>
-      </div>
-      <div class="flex-center desc left-margin">
-        <p>
-          Browse the web freely through this Ultraviolet-powered proxy, or jump
-          straight into the bundled
-          <a class="inline-link" href="/games">games collection</a>.
+      <section class="glass">
+        <h1 class="title">Browse without limits</h1>
+        <p class="subtitle">
+          A fast, private web proxy powered by Ultraviolet &mdash; plus a whole
+          arcade of <a class="inline-link" href="/games">bundled games</a>.
         </p>
-      </div>
 
-      <form id="uv-form" class="flex-center">
-        <input
-          id="uv-search-engine"
-          value="https://www.google.com/search?q=%s"
-          type="hidden"
-        />
-        <input
-          id="uv-address"
-          type="text"
-          placeholder="Search the web or enter a URL"
-        />
-      </form>
-      <div class="desc left-margin">
-        <p id="uv-error"></p>
-        <pre id="uv-error-code"></pre>
-      </div>
+        <form id="uv-form" class="search">
+          <span class="search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path
+                fill="currentColor"
+                d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.51 4.51 0 0 1 9.5 14Z"
+              />
+            </svg>
+          </span>
+          <input
+            id="uv-address"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Search the web or enter a URL"
+          />
+          <select id="uv-search-engine" title="Search engine">
+            <option value="https://www.google.com/search?q=%s">Google</option>
+            <option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option>
+            <option value="https://www.bing.com/search?q=%s">Bing</option>
+            <option value="https://search.brave.com/search?q=%s">Brave</option>
+          </select>
+          <button type="submit" class="go-btn">Go</button>
+        </form>
 
-      <div class="flex-center">
-        <a class="games-cta" href="/games">🎮 Open the Games Collection</a>
-      </div>
+        <div class="chips" id="quick-links">
+          <button type="button" class="chip" data-url="https://www.google.com">
+            Google
+          </button>
+          <button type="button" class="chip" data-url="https://www.youtube.com">
+            YouTube
+          </button>
+          <button
+            type="button"
+            class="chip"
+            data-url="https://www.wikipedia.org"
+          >
+            Wikipedia
+          </button>
+          <button type="button" class="chip" data-url="https://www.reddit.com">
+            Reddit
+          </button>
+          <button type="button" class="chip" data-url="https://github.com">
+            GitHub
+          </button>
+        </div>
+
+        <div class="status">
+          <p id="uv-error"></p>
+          <pre id="uv-error-code"></pre>
+        </div>
+      </section>
+
+      <a class="games-card" href="/games">
+        <span class="games-emoji">🎮</span>
+        <span class="games-text">
+          <strong>Open the Games Collection</strong>
+          <small>HTML5 &middot; Flash &middot; Retro consoles</small>
+        </span>
+        <span class="games-arrow">→</span>
+      </a>
     </main>
 
     <footer>
-      <div>
+      <div class="foot-links">
         <a href="/">Proxy</a>
         <a href="/games">Games</a>
         <a href="credits.html">Credits</a>
-        <a href="https://github.com/titaniumnetwork-dev/Ultraviolet"
-          >Ultraviolet</a
-        >
+        <a href="https://github.com/titaniumnetwork-dev/Ultraviolet">Ultraviolet</a>
       </div>
-      <div>
-        <span>Proxy powered by Ultraviolet &middot; Games from gfiles</span>
-      </div>
+      <span class="foot-note">Proxy powered by Ultraviolet &middot; Games from gfiles</span>
     </footer>
-    <iframe style="display: none" id="uv-frame" title="Proxy"></iframe>
+
+    <div id="uv-overlay">
+      <div class="uv-bar">
+        <span class="uv-bar-title">✦ Nebula proxy</span>
+        <span id="uv-loading" class="uv-loading">Connecting…</span>
+        <button type="button" id="uv-exit" class="uv-exit">✕ Exit</button>
+      </div>
+      <iframe id="uv-frame" title="Proxy"></iframe>
+    </div>
   </body>
 </html>

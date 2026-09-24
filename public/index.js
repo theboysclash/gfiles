@@ -8,7 +8,7 @@ const form = document.getElementById("uv-form");
  */
 const address = document.getElementById("uv-address");
 /**
- * @type {HTMLInputElement}
+ * @type {HTMLSelectElement}
  */
 const searchEngine = document.getElementById("uv-search-engine");
 /**
@@ -19,10 +19,44 @@ const error = document.getElementById("uv-error");
  * @type {HTMLPreElement}
  */
 const errorCode = document.getElementById("uv-error-code");
+
+const overlay = document.getElementById("uv-overlay");
+const frame = document.getElementById("uv-frame");
+const loading = document.getElementById("uv-loading");
+const exitBtn = document.getElementById("uv-exit");
+const quickLinks = document.getElementById("quick-links");
+
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+function closeFrame() {
+  overlay.classList.remove("show");
+  frame.src = "about:blank";
+  document.body.classList.remove("proxy-open");
+}
+
+if (exitBtn) exitBtn.addEventListener("click", closeFrame);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && overlay.classList.contains("show")) closeFrame();
+});
+
+frame.addEventListener("load", () => {
+  if (frame.src && frame.src !== "about:blank" && loading)
+    loading.textContent = "";
+});
+
+if (quickLinks) {
+  quickLinks.addEventListener("click", (e) => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    address.value = btn.dataset.url;
+    form.requestSubmit();
+  });
+}
+
+async function launch(rawInput) {
+  error.textContent = "";
+  errorCode.textContent = "";
 
   try {
     await registerSW();
@@ -32,11 +66,13 @@ form.addEventListener("submit", async (event) => {
     throw err;
   }
 
-  const url = search(address.value, searchEngine.value);
+  const url = search(rawInput, searchEngine.value);
 
-  let frame = document.getElementById("uv-frame");
-  frame.style.display = "block";
-  let wispUrl =
+  overlay.classList.add("show");
+  document.body.classList.add("proxy-open");
+  if (loading) loading.textContent = "Connecting…";
+
+  const wispUrl =
     (location.protocol === "https:" ? "wss" : "ws") +
     "://" +
     location.host +
@@ -45,4 +81,11 @@ form.addEventListener("submit", async (event) => {
     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
   }
   frame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const value = address.value.trim();
+  if (!value) return;
+  await launch(value);
 });
