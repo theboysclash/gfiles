@@ -5,6 +5,13 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+<nav class="topnav">
+<a class="brand" href="/">Proxy &amp; Games</a>
+<div class="links">
+<a href="/">Proxy</a>
+<a class="active" href="/games">Games</a>
+</div>
+</nav>
 <div class="container">
 <div class="box">
 <input type="text" id="gsearchbar" onkeyup="document.querySelectorAll('#glist>a').forEach(l=>l.style.display=l.textContent.toUpperCase().includes(this.value.toUpperCase().replace(/ /g,''))?'block':'none')" autocomplete="off" spellcheck="false" placeholder="Search" />

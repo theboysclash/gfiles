@@ -2,6 +2,35 @@ body {
 	background-color: black;
 	color: white;
 	font-family: sans-serif;
+	margin: 0;
+}
+
+.topnav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 24px;
+	background: #0a0a0a;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topnav .brand {
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.topnav .links a {
+	color: rgba(255, 255, 255, 0.7);
+	text-decoration: none;
+	margin-left: 22px;
+	font-size: 15px;
+}
+
+.topnav .links a:hover,
+.topnav .links a.active {
+	color: #fff;
 }
 
 .container {

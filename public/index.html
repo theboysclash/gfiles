@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Proxy &amp; Games</title>
+    <meta
+      name="description"
+      content="A custom web proxy powered by Ultraviolet, bundled with a large collection of HTML5, Flash and retro games."
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#434c5e"
+    />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="baremux/index.js" defer></script>
+    <script src="epoxy/index.js" defer></script>
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+
+  <body>
+    <nav class="topnav">
+      <a class="brand" href="/">
+        <img src="uv.png" alt="logo" />
+        <span>Proxy&nbsp;&amp;&nbsp;Games</span>
+      </a>
+      <div class="links">
+        <a class="active" href="/">Proxy</a>
+        <a href="/games">Games</a>
+      </div>
+    </nav>
+
+    <main class="hero">
+      <div
+        title="Ultraviolet Logo"
+        class="flex-center logo-wrapper header-center"
+      >
+        <img class="logo" src="uv.png" alt="Ultraviolet" />
+        <h1>Custom Web Proxy</h1>
+      </div>
+      <div class="flex-center desc left-margin">
+        <p>
+          Browse the web freely through this Ultraviolet-powered proxy, or jump
+          straight into the bundled
+          <a class="inline-link" href="/games">games collection</a>.
+        </p>
+      </div>
+
+      <form id="uv-form" class="flex-center">
+        <input
+          id="uv-search-engine"
+          value="https://www.google.com/search?q=%s"
+          type="hidden"
+        />
+        <input
+          id="uv-address"
+          type="text"
+          placeholder="Search the web or enter a URL"
+        />
+      </form>
+      <div class="desc left-margin">
+        <p id="uv-error"></p>
+        <pre id="uv-error-code"></pre>
+      </div>
+
+      <div class="flex-center">
+        <a class="games-cta" href="/games">🎮 Open the Games Collection</a>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <a href="/">Proxy</a>
+        <a href="/games">Games</a>
+        <a href="credits.html">Credits</a>
+        <a href="https://github.com/titaniumnetwork-dev/Ultraviolet"
+          >Ultraviolet</a
+        >
+      </div>
+      <div>
+        <span>Proxy powered by Ultraviolet &middot; Games from gfiles</span>
+      </div>
+    </footer>
+    <iframe style="display: none" id="uv-frame" title="Proxy"></iframe>
+  </body>
+</html>
