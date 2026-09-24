@@ -1,9 +1,13 @@
-# Proxy & Games
+# Nebula — Proxy & Games
 
 A custom web proxy powered by [Ultraviolet](https://github.com/titaniumnetwork-dev/Ultraviolet)
 (the modern wisp / bare-mux / epoxy stack) bundled together with a large
 collection of HTML5, Flash (via [ruffle](https://ruffle.rs/)) and retro games
 (via [webretro](https://github.com/BinBashBanana/webretro)).
+
+The UI is a custom "Nebula" theme: an animated aurora background with a
+glassmorphic proxy home page, and a games library rendered as a card grid with
+real screenshot thumbnails for every HTML5 game.
 
 ## Running
 
@@ -42,6 +46,19 @@ included Python script:
 
 ```sh
 python3 compiler.py   # or: npm run compile
+```
+
+Each card uses a screenshot thumbnail (`gfiles/thumbnails/`) when one exists,
+and otherwise falls back to a colored gradient tile with the game's initial.
+
+### Thumbnails
+
+Thumbnails are committed to `gfiles/thumbnails/`. To (re)generate them, run the
+site and use the capture tool (uses `puppeteer-core` + a local Chrome):
+
+```sh
+npm start                 # in one terminal
+npm run thumbnails        # in another (add `-- 2048,chess --force` to target/refresh)
 ```
 
 swfs are [here](https://github.com/BinBashBanana/gstore).
